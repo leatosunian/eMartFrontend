@@ -320,6 +320,7 @@
             }
             }).then((response) => {
               const {data} = response
+              console.log(data);
               this.$notify({
                 group: 'foo',
                 title: '',
