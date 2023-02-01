@@ -327,7 +327,9 @@
                 text: 'Producto creado correctamente!',
                 type: 'success'
               });
-
+              setTimeout(() => {
+              this.$router.push({name: 'products'})
+              }, 2200);
             }).catch( error => {
               console.log(error.response.data.msg)
               this.msm_error = error.response.data.msg
@@ -339,9 +341,7 @@
               });
             })
 
-            setTimeout(() => {
-              this.$router.push({name: 'products'})
-            }, 2200);
+
         },
         getCategories(){
             const token = localStorage.getItem('token')
