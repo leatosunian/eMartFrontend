@@ -141,7 +141,6 @@ router.beforeEach((to, from, next) => {
 
     try {
       const token = jwtDecode(store.state.token)
-      console.log(token)
       if(!token.id){
         next({name: 'login'})
       } else{
@@ -153,7 +152,6 @@ router.beforeEach((to, from, next) => {
       }
 
   } else {
-    console.log('publico');
     next()
   }
 })
