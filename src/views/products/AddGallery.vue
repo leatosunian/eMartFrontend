@@ -273,7 +273,9 @@ export default {
             axios.post(this.$url+'/gallery/add', formData, {
                 headers: {
                     "Content-Type": 'multipart/form-data',
-                    "Authorization" : `Bearer ${this.$token}`
+                    "Authorization" : `Bearer ${this.$token}`, 
+                    'Access-Control-Allow-Origin' : '*',
+                    'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
                 }
                 }).then((response) => {
                     const {data} = response
