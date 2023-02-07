@@ -92,7 +92,7 @@
                 </div>
               <div class="col-12 col-md-6">
                 <div class="card">
-                  <div class="card-body">
+                  <div class="card-body" style="padding: 0.8rem !important;">
                     <!-- List group -->
                     <div class="list-group list-group-flush my-n3">
                       <div class="list-group-item">
@@ -173,7 +173,7 @@
               </div>
               <div class="col-12 col-md-6">
                 <div class="card">
-                  <div class="card-body">
+                  <div class="card-body" style="padding: 0.8rem !important;">
                     <!-- List group -->
                     <div class="list-group list-group-flush my-n3">
                       <div class="list-group-item">
@@ -274,7 +274,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                   <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style="padding: 0.8rem !important;">
                       <!-- List group -->
                       <div class="list-group list-group-flush my-n3">
                         <div class="list-group-item">
@@ -350,7 +350,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                   <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style="padding: 0.8rem !important;">
                       <!-- List group -->
                       <div class="list-group list-group-flush my-n3">
                         <div class="list-group-item">
@@ -496,6 +496,8 @@
     </div>
   </div>
 </template>
+
+
 
 <script>
 import Sidebar from "@/components/Sidebar.vue";

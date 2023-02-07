@@ -38,7 +38,8 @@
                 <div class="mb-3 row">
     
                     <div class=" col-12 col-lg-6" >
-                        <div class="mb-3 input-group">
+                        <span style="font-weight:600; font-size:16px;">Añadir categoría</span>
+                        <div class="mt-2 mb-3 input-group">
                             <input type="text" class="form-control" placeholder="Ingresa la nueva categoría" v-model="newCategory">
                             <button type="button" class="btn" style="background: linear-gradient(-50.6deg, rgb(179 134 149) -18.3%, rgb(67, 54, 74) 16.4%, rgb(47, 48, 67) 68.2%, rgb(69 41 90) 99.1%); color :#f9f9f9 ;" v-on:click="validate()">Añadir</button>
                         </div>
@@ -61,19 +62,19 @@
                         </template>
 
                         
-                        <ul class="list-group list-group-flush list my-n2">
-                            <li class="list-group-item" v-for="item in allCategories">
+                        <ul class="list-group list-group-flush list my-n2" style="padding-top:4px!important;">
+                            <li class="list-group-item"  v-for="item in allCategories">
                                 <!-- CATEGORIES -->
-                                <div class="row align-items-center">
+                                <div class="row align-items-center" style="padding:0 20px !important; margin-bottom:10px!important;">
 
-                                    <div class="col ms-n2">
+                                    <div class="col" >
                                         <!-- Title -->
                                         <h2 class="mb-1 name">
-                                            <span href="profile-posts.html" style="font-weight:700;font-size: 1.2rem;">{{ item.category.name }}</span>
+                                            <span href="profile-posts.html" style="font-weight:700;font-size: 1.1rem;">{{ item.category.name }}</span>
                                             
                                         </h2>
 
-                                        <span style="font-size: 13px;">{{ item.qOfProducts }} Productos</span>
+                                        <span style="font-size: 12px;">{{ item.qOfProducts }} Productos</span>
                 
                                     </div>
 
@@ -104,10 +105,10 @@
                                     <div class="col-12">
                                         <ul class="mt-1 list-group" v-for="subItem in item.subcategories">
                                             
-                                            <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size: .9rem;padding: 0.5rem 1.5rem;">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size: .9rem;padding: 0.5rem 1.5rem; border: none !important;">
                                                 - {{subItem.name}} 
-                                                <a v-b-modal="`disable-${subItem._id}`" class="text-white btn btn-sm btn-danger" >
-                                                    X
+                                                <a v-b-modal="`disable-${subItem._id}`" style="width:10px !important; height:10px !important; color:red!important; font-size:16px;" >
+                                                    x
                                                 </a>
                                                 <b-modal :id="`disable-${subItem._id}`" title="BootstrapVue" title-html="<h4 class='card-header-title'><b>Eliminar subcategoria<b/></h4>" @ok="deleteSubcategory(subItem._id)">
                                                     <p class="my-4" style="font-size: 16px;">Deseas eliminar la subcategoría <b>{{subItem.name}}</b>?</p>
