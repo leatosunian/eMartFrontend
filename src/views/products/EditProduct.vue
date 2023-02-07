@@ -306,17 +306,17 @@
                 </div>  
                   
                 <div class="card">
-                      <div class="card-body">
+                      <div class="card-body" style="padding:0 10px!important;">
                   
                           <!-- List group -->
-                          <div class="list-group list-group-flush my-n3"  v-for="item in variants">
+                          <div class="list-group list-group-flush"  v-for="item in variants">
                           
                           <div class="list-group-item">
-                              <div class="row align-items-center">
+                              <div class="row align-items-center" style="margin: auto 0 !important;">
                               <div class="col">
                   
                                   <!-- Heading -->
-                                  <h4 class="mb-1">
+                                  <h4 class="mb-1" style="font-weight:600!important;">
                                   {{item.variant}}
                                   </h4>
                   

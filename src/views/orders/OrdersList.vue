@@ -25,7 +25,7 @@
                             </div>
                         </div>
 
-                        <div class="mb-4 row">
+                        <div class="gap-4 mb-4 row">
                             <div class="card-header">
 
                                 <!-- Title -->
@@ -35,8 +35,8 @@
 
                             </div>
                             <div class="col-12 col-md-8 col-xl-10 d-flex">
-                                <input type="date" class="form-control" v-model="inicio" style="margin-right: 1rem"/>
-                                <input type="date" class="form-control" v-model="hasta"/>
+                                <input type="date" class="form-control" placeholder="Desde" v-model="inicio" style="margin-right: 1rem"/>
+                                <input type="date" class="form-control" placeholder="Hasta" v-model="hasta"/>
                             </div>
                             <div class="col-3 col-md-3 col-xl-2">
                                 <button class="btn" style="width:100%; background: linear-gradient(120.6deg, rgb(179 134 149) -18.3%, rgb(67, 54, 74) 16.4%, rgb(47, 48, 67) 68.2%, rgb(69 41 90) 99.1%); color:#f9f9f9 ;" v-on:click="getOrders()">Buscar</button>
