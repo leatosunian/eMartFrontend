@@ -1,5 +1,10 @@
 <template>
     <div>
+      <template>
+        <div class="vld-parent" style="z-index: 999999 !important;">
+            <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+        </div>
+      </template>
       <Sidebar/>
       <div class="main-content contentPadding">
         <div class="container-fluid">
@@ -126,12 +131,13 @@
     </div>
   </template>
   
-  <script>
-  // @ is an alias to /src
+<script>
   import Sidebar from '@/components/Sidebar.vue'
   import Topbar from '@/components/Topbar.vue';
   import axios from 'axios'
   import Error from '@/components/Error.vue'
+  import Loading from 'vue-loading-overlay';
+  import 'vue-loading-overlay/dist/vue-loading.css';
   
   export default {
     name: 'AdminProfile',
@@ -141,8 +147,8 @@
           userType: ''
         },
         id: this.$route.params.id,
-        isData: true
-  
+        isData: true,
+        isLoading: true
       }
     },
 
@@ -162,16 +168,13 @@
             const {data} = response
             this.isData = true
             this.employee = data
-            console.log(data)
-            console.log(this.isData)
+            this.isLoading = false
           } 
           
   
         }).catch( error => {
           this.isData = false
-          console.log(this.isData)
           console.log(error)
-          console.log(error.response.data.msg)
         })
       },
       
@@ -202,7 +205,7 @@
           this.$notify({
             group: 'foo',
             title: '',
-            text: 'Empleado actualizado correctamente!',
+            text: 'Perfil actualizado correctamente!',
             type: 'success'
           });
   
@@ -229,7 +232,7 @@
 
     components: {
       Sidebar,
-      Topbar,
+      Loading,
       Error
     },
     

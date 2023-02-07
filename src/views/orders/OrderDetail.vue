@@ -1,5 +1,10 @@
 <template>
   <div>
+    <template>
+      <div class="vld-parent" style="z-index: 999999 !important;">
+          <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+      </div>
+    </template>
     <Sidebar />
     <div class="main-content contentPadding">
       <div class="container-fluid">
@@ -497,6 +502,8 @@ import Sidebar from "@/components/Sidebar.vue";
 import axios from "axios";
 import moment from "moment";
 import currency_formatter from "currency-formatter";
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
   name: "OrderDetail",
@@ -505,7 +512,8 @@ export default {
       order: {},
       details: [],
       status: '',
-      trackingCode: ''
+      trackingCode: '',
+      isLoading: true,
     };
   },
   beforeMount() {
@@ -564,6 +572,7 @@ export default {
           }
           this.details = data.details;
           this.status = this.order.statusStr
+          this.isLoading = false
         });
     },
     convertCurrency(number) {
@@ -576,6 +585,7 @@ export default {
   },
   components: {
     Sidebar,
+    Loading
   },
 };
 </script>

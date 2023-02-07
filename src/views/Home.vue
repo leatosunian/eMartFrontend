@@ -1,5 +1,10 @@
 <template>
   <div>
+    <template>
+      <div class="vld-parent" style="z-index: 999999 !important;">
+          <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+      </div>
+    </template>
     <Sidebar/>
     <div class="main-content ">
 
@@ -199,17 +204,21 @@ import Sidebar from '@/components/Sidebar.vue'
 import axios from 'axios';
 import store from '@/store/index';
 import currencyFormatter from 'currency-formatter'
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
   name: 'Home',
   components: {
     Sidebar,
+    Loading
   },
   data(){
         return {
             ventas: [],
             userData: {},
-            userId: ''
+            userId: '',
+            isLoading: true
         }
     },
     beforeMount(){
@@ -233,6 +242,7 @@ export default {
           }).then((result)=>{
             this.userData = result.data;
             this.userData.stName = this.userData.userName.split(' ')[0]
+            this.isLoading = false
           });
         },
         getOrders(){

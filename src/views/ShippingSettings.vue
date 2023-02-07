@@ -1,5 +1,10 @@
 <template>
     <div>
+        <template>
+            <div class="vld-parent" style="z-index: 999999 !important;">
+                <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+            </div>
+        </template>
         <Sidebar/>
         <div class="main-content contentPadding">
             <div class="container-fluid">
@@ -107,15 +112,19 @@
 <script>
 import Sidebar from '@/components/Sidebar.vue'
 import axios from 'axios'
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     name: "ShippingSettings",
     components: {
-        Sidebar
+        Sidebar,
+        Loading
     },
     data(){
         return {
-            settings: {}
+            settings: {},
+            isLoading: true
         }
     },
     beforeMount(){
@@ -151,6 +160,7 @@ export default {
                 if(response.data[0]){
                     const {data} = response
                     this.settings = data[0]
+                    this.isLoading = false
                 } 
             }).catch( error => {
                 console.log(error)

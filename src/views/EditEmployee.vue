@@ -1,5 +1,10 @@
 <template>
     <div>
+      <template>
+        <div class="vld-parent" style="z-index: 999999 !important;">
+            <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+        </div>
+      </template>
       <Sidebar/>
       <div class="main-content contentPadding">
         <div class="container-fluid">
@@ -118,12 +123,13 @@
   </template>
   
   <script>
-  // @ is an alias to /src
   import Sidebar from '@/components/Sidebar.vue'
   import Topbar from '@/components/Topbar.vue';
   import axios from 'axios'
   import Error from '@/components/Error.vue'
-  
+  import Loading from 'vue-loading-overlay';
+  import 'vue-loading-overlay/dist/vue-loading.css';
+
   export default {
     name: 'EditEmployee',
     data() {
@@ -132,7 +138,8 @@
           userType: ''
         },
         id: this.$route.params.id,
-        isData: true
+        isData: true,
+        isLoading: true
       }
     },
 
@@ -152,6 +159,7 @@
             const {data} = response
             this.isData = true
             this.employee = data
+            this.isLoading = false
           } 
         }).catch( error => {
           this.isData = false
@@ -201,18 +209,15 @@
         })
       }
     },
-
-    mounted() {
-
-    },
-    
     beforeMount(){
       this.init_data()
     },
-
+    mounted(){
+      window.scrollTo(0, 0)
+    },
     components: {
       Sidebar,
-      Topbar,
+      Loading,
       Error
     },
     

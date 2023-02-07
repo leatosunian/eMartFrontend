@@ -1,8 +1,8 @@
 <template>
     <div class="d-flex align-items-center bg-auth border-top border-top-2 border-primary" style="height: 100vh !important ; display: flex !important;
     flex-direction: column !important;">
-        <div class="" style="width:100%; display:flex; justify-content:center; margin-top:20px; margin-bottom:170px;">
-          <img src="@/assets/emart0.png" class="" style="width:150px; " alt="...">
+        <div class="" style="width:100%; display:flex; justify-content:center; margin-top:20px; margin-bottom:150px;">
+          <img src="@/assets/emart0.png" class="" style="width:130px; " alt="...">
         </div>
         <div class="container">
             
@@ -64,9 +64,21 @@
                     </div>
 
                     <!-- Submit -->
-                    <button v-on:click="validate()" type="button" class="mb-3 btn btn-lg w-100 btn-primary" style="background: linear-gradient(to right, #dc2430, #7b4397); border: none">
+                    <button v-if="!loading" v-on:click="validate()" type="button" class="mb-3 btn btn-lg w-100 btn-primary" style="background: linear-gradient(to right, #dc2430, #7b4397); border: none">
                       Iniciar Sesión
                     </button>
+
+                    <template v-if="loading">
+                      <div>
+                          <div class="row">
+                              <div class="text-center col-12">
+                                  <div class="mt-2 mb-2 spinner-border" role="status">
+                                  <span class="visually-hidden">Cargando...</span>
+                                  </div>
+                              </div>
+                          </div> 
+                      </div>
+                    </template>
 
                     <div v-if="msm_error" class="alert alert-warning" role="alert">
                       {{msm_error}}
@@ -101,7 +113,8 @@ export default {
     return {
       name: '',
       password: '',
-      msm_error: ''
+      msm_error: '',
+      loading: false
     }
   },
   created(){
@@ -111,6 +124,7 @@ export default {
       if(!this.name || !this.password){
         this.msm_error = 'Completá todos los campos'
       } else {
+        this.loading = true
         this.msm_error = ''
         this.login()
       }
@@ -127,6 +141,7 @@ export default {
         }
       }).then((response) => {
         const {data} = response
+        this.loading= false
         this.$store.dispatch('saveToken', data.token)
         localStorage.setItem('user_id', data._id)
         
@@ -137,6 +152,7 @@ export default {
 
       }).catch( error => {
         console.log(error.response.data.msg)
+        this.loading= false
         this.msm_error = error.response.data.msg
       })
       

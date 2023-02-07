@@ -1,6 +1,10 @@
 <template>
     <div>
-   
+      <template>
+        <div class="vld-parent" style="z-index: 999999 !important;">
+            <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+        </div>
+      </template>
       <Sidebar/>
 
       <div class="main-content contentPadding">
@@ -235,13 +239,15 @@
   import Topbar from '@/components/Topbar.vue';
   import axios from 'axios';
   import store from '@/store/index';
-  
-  // @ is an alias to /src
+  import Loading from 'vue-loading-overlay';
+  import 'vue-loading-overlay/dist/vue-loading.css';
+
   export default {
     name: 'CreateProduct',
     components: {
       Sidebar,
-      Topbar
+      Topbar,
+      Loading
     },
 
     data() {
@@ -252,7 +258,8 @@
             },
             uploadedImg: undefined,
             subcategories: [],
-            categories: []
+            categories: [],
+            isLoading: true,
         }
     },
 
@@ -318,7 +325,7 @@
               "Content-Type": 'multipart/form-data',
               "Authorization" : `Bearer ${this.$token}`,
               'Access-Control-Allow-Origin' : '*',
-              'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+              'Access-Control-Allow-Methods' : 'POST,OPTIONS',
             }
             }).then((response) => {
               const {data} = response
@@ -355,7 +362,7 @@
             }).then((response) => {
                 const {data} = response
                 this.categories = data
-                
+                this.isLoading = false
             }).catch( error => {
                 console.log(error.response.data.msg)
             })

@@ -1,5 +1,10 @@
 <template>
     <div>
+        <template>
+            <div class="vld-parent" style="z-index: 999999 !important;">
+                <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+            </div>
+        </template>
       <Sidebar/>
       <div class="main-content contentPadding">
         <div class="container-fluid">
@@ -156,11 +161,14 @@
 import axios from 'axios'
 import Sidebar from '@/components/Sidebar.vue';
 import $ from 'jquery'
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     name: 'Categories',
     components: {
-        Sidebar
+        Sidebar,
+        Loading
     },
     data(){
         return{
@@ -170,7 +178,8 @@ export default {
             newSubcategory: '',
             allCategories: [],
             categoryId: '',
-            loading: true
+            loading: true,
+            isLoading: true,
         }
     },
     methods: {
@@ -272,6 +281,7 @@ export default {
                 const {data} = response
                 this.allCategories = data
                 this.loading = false
+                this.isLoading = false
             }).catch( error => {
                 console.log(error.response.data.msg)
             })

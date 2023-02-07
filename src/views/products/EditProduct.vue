@@ -1,5 +1,11 @@
 <template>
     <div>
+      <template>
+        <div class="vld-parent" style="z-index: 999999 !important;">
+            <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+        </div>
+      </template>
+
       <Sidebar/>
 
       <div class="main-content contentPadding">
@@ -383,8 +389,9 @@
   <script>
   
   import Sidebar from '@/components/Sidebar.vue'
-  import Topbar from '@/components/Topbar.vue';
   import axios from 'axios';
+  import Loading from 'vue-loading-overlay';
+  import 'vue-loading-overlay/dist/vue-loading.css';
   import store from '@/store/index';
   
   // @ is an alias to /src
@@ -392,7 +399,7 @@
     name: 'EditProduct',
     components: {
       Sidebar,
-      Topbar
+      Loading
     },
 
     data() {
@@ -405,7 +412,8 @@
             variant: {},
             variants: [],
             categories: [],
-            subcategories: []
+            subcategories: [],
+            isLoading: true,
         }
     },
 
@@ -582,7 +590,7 @@
               }).then((response) => {
                 const {data} = response
                 this.variants = data
-             
+                this.isLoading = false
               }).catch( error => {
                 console.log(error.response.data.msg)
                 this.msm_error = error.response.data.msg

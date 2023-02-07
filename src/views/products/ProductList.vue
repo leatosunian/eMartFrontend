@@ -1,5 +1,10 @@
 <template>
     <div>
+        <template>
+            <div class="vld-parent" style="z-index: 999999 !important;">
+                <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+            </div>
+        </template>
         <Sidebar />
         <div class="main-content contentPadding">
             <div class="container-fluid">
@@ -25,24 +30,23 @@
                                 </div>
                                 </div> <!-- / .row -->
                                 <div class="row align-items-center">
-                                <div class="col">
+                                    <div class="col">
 
-                                    <!-- Nav -->
-                                    <ul class="nav nav-tabs nav-overflow header-tabs">
-                                    <li class="nav-item">
-                                        <a class="nav-link active">
-                                        Todos los productos
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <router-link to="/products/create" class="nav-link">Nuevo producto</router-link>
-                         
-                                        
-                                    </li>
-                                    
-                                    </ul>
+                                        <!-- Nav -->
+                                        <ul class="nav nav-tabs nav-overflow header-tabs">
+                                            <li class="nav-item">
+                                                <a class="nav-link active">
+                                                Todos los productos
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <router-link to="/products/create" class="nav-link">Nuevo producto</router-link>
+                                
+                                                
+                                            </li>
+                                        </ul>
 
-                                </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -122,6 +126,8 @@
                                                         </a>
         
                                                     </div>
+
+                                                    
                                                     <div class="col ms-n2">
         
                                                         <!-- Title -->
@@ -230,6 +236,14 @@
 </template>
   
 <style>
+    .row>* {
+        padding-left: calc(var(--bs-gutter-x)*.4) !important;
+        padding-right: calc(var(--bs-gutter-x)*.4) !important;
+    }
+
+    .card-body {
+        padding: 0 !important;
+    }
     .sidebar-menu-item[data-bs-toggle="collapse"]::before{
         display: none !important;
     }
@@ -279,15 +293,16 @@
 
 
 <script>
+
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
   
 import Sidebar from '@/components/Sidebar.vue'
-import Topbar from '@/components/Topbar.vue';
 import axios from 'axios';
 import store from '@/store/index';
 import moment from 'moment'
 import currencyFormatter from 'currency-formatter'
   
-// @ is an alias to /src
 export default {
   name: 'ProductList',
   
@@ -309,6 +324,8 @@ export default {
             (this.currentPage-1)* this.perPage, this.currentPage*this.perPage
             )
         },
+        isLoading: true,
+
     }
   },
   
@@ -350,7 +367,8 @@ export default {
             } else{
                 this.areProducts = true
             }
-            
+            this.isLoading = false
+
         }).catch( error => {
             console.log(error.response.data.msg)
             this.msm_error = error.response.data.msg
@@ -393,7 +411,7 @@ export default {
 
   components: {
     Sidebar,
-    Topbar
+    Loading
   }
 }
 </script>

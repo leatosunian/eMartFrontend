@@ -1,5 +1,10 @@
 <template>
     <div>
+        <template>
+            <div class="vld-parent" style="z-index: 999999 !important;">
+                <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+            </div>
+        </template>
         <Sidebar />
         <div class="main-content contentPadding">
 
@@ -110,16 +115,19 @@
 import axios from 'axios'
 import Sidebar from '@/components/Sidebar.vue'
 import currencyFormatter from 'currency-formatter'
-
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     name: "PendingOrders",
     components: {
-        Sidebar
+        Sidebar,
+        Loading
     },
     data(){
         return {
-            ventas: []
+            ventas: [],
+            isLoading: true
         }
     },
     beforeMount(){
@@ -138,6 +146,7 @@ export default {
                 }
             }).then((result)=>{
                 this.ventas = result.data;
+                this.isLoading = false
             });
             
         },

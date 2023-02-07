@@ -1,5 +1,10 @@
 <template>
     <div>
+        <template>
+            <div class="vld-parent" style="z-index: 999999 !important;">
+                <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+            </div>
+          </template>
         <Sidebar />
         <div class="main-content contentPadding">
 
@@ -159,6 +164,8 @@ import Error from '@/components/Error.vue';
 import axios from 'axios';
 import store from '@/store/index';
 import $ from 'jquery'
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 // @ is an alias to /src
 export default {
@@ -166,7 +173,8 @@ export default {
   components: {
     Sidebar,
     Topbar,
-    Error
+    Error,
+    Loading
   },
   data(){
     return {
@@ -175,7 +183,9 @@ export default {
         images: [],
         isData: false,
         loadingData: true,
-        loadingGallery: true
+        loadingGallery: true,
+        isLoading: true,
+
     }
   },
 
@@ -218,6 +228,7 @@ export default {
                 this.loadingGallery = false
                 this.images = data
                 this.isData = true
+                this.isLoading = false
             }).catch( error => {
                 console.log(error.response.data.msg)
                 this.isData = false
