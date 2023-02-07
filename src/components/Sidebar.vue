@@ -265,8 +265,6 @@
     padding-right: 1rem !important;
 }
 }
-
-
 </style>
 
 

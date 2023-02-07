@@ -61,7 +61,7 @@
                         </template>
 
                         
-                        <ul class="list-group list-group-flush list my-n3">
+                        <ul class="list-group list-group-flush list my-n2">
                             <li class="list-group-item" v-for="item in allCategories">
                                 <!-- CATEGORIES -->
                                 <div class="row align-items-center">
@@ -75,23 +75,15 @@
 
                                         <span style="font-size: 13px;">{{ item.qOfProducts }} Productos</span>
                 
-                                        <!-- enabled -->
-                                        <p class="mt-1 small" v-if="item.category.enabled">
-                                            <span class="text-success">●</span> Activado
-                                        </p>
-
-                                        <p class="mt-1 small" v-if="!item.category.enabled">
-                                            <span class="text-success">●</span> Desactivado
-                                        </p>
                                     </div>
 
                                     <div class="col-auto">
                                         <button type="button" class="text-white btn btn-sm btn-dark" style="margin-right: 1rem;background: linear-gradient(-50.6deg, rgb(179 134 149) -18.3%, rgb(67, 54, 74) 16.4%, rgb(47, 48, 67) 68.2%, rgb(69 41 90) 99.1%); color :#f9f9f9 ;" v-on:click="openInput(item.category._id)">
-                                            Agregar subcategoria
+                                            Nueva subcat.
                                         </button>
                                         <!-- Button -->
                                         <a v-b-modal="`eliminar-${item.category._id}`" class="text-white btn btn-sm btn-danger" >
-                                            Eliminar
+                                            X
                                         </a>
                                         <b-modal :id="`eliminar-${item.category._id}`" title="BootstrapVue" title-html="<h4 class='card-header-title'><b>Eliminar categoria<b/></h4>" @ok="deleteCategory(item.category._id)">
                                             <p class="my-4" style="font-size: 16px;">Deseas eliminar la categoría <b>{{item.category.name}}</b>?</p>
@@ -115,7 +107,7 @@
                                             <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size: .9rem;padding: 0.5rem 1.5rem;">
                                                 - {{subItem.name}} 
                                                 <a v-b-modal="`disable-${subItem._id}`" class="text-white btn btn-sm btn-danger" >
-                                                    Eliminar
+                                                    X
                                                 </a>
                                                 <b-modal :id="`disable-${subItem._id}`" title="BootstrapVue" title-html="<h4 class='card-header-title'><b>Eliminar subcategoria<b/></h4>" @ok="deleteSubcategory(subItem._id)">
                                                     <p class="my-4" style="font-size: 16px;">Deseas eliminar la subcategoría <b>{{subItem.name}}</b>?</p>
