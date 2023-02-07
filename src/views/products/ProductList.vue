@@ -114,8 +114,9 @@
                                     </template>
 
                                     <template v-if="!loading">
-                                        <div>
-                                            <ul class="list-group list-group-lg list-group-flush list my-n4" v-if="products.products.length >= 1" id="my-table">
+                                        <div style="margin-top:20px!important;">
+                                            <ul class="list-group list-group-lg list-group-flush list my-n4" style="padding-left: 10px!important;
+                                            padding-right: 10px!important;" v-if="products.products.length >= 1" id="my-table">
                                                 <li class="list-group-item" v-for="item in itemsForList">
                                                     <div class="row align-items-center">
                                                     <div class="col-auto">
@@ -236,10 +237,7 @@
 </template>
   
 <style>
-    .row>* {
-        padding-left: calc(var(--bs-gutter-x)*.4) !important;
-        padding-right: calc(var(--bs-gutter-x)*.4) !important;
-    }
+
 
     .card-body {
         padding: 0 !important;
