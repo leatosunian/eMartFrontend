@@ -568,13 +568,13 @@ export default {
         })
         .then((response) => {
           const { data } = response;
+          this.isLoading = false
           if(data.order[0]){
             this.order = data.order[0];
-            console.log(this.order);
           }
           this.details = data.details;
           this.status = this.order.statusStr
-          this.isLoading = false
+          
         });
     },
     convertCurrency(number) {
