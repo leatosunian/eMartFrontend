@@ -143,7 +143,7 @@
 
                                               <!-- Heading -->
                                               <h1 class="mb-3 display-4">
-                                                  No se encontraron registros 😭
+                                                  No se encontraron registros
                                               </h1>
 
                                               <!-- Subheading -->
