@@ -2,7 +2,7 @@
 <template>
   <div id="app">
     <!-- <Sidebar/> -->
-    <notifications closeOnClick="true" ignoreDuplicates="true" animation-type="css" position="bottom center" height="80px" group="foo" />
+    <notifications animation-type="css" position="bottom center" height="80px" group="foo" />
     <router-view/>
   </div>
 
