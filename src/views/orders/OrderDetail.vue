@@ -535,7 +535,6 @@ export default {
       },
     updateStatus(){
         const token = localStorage.getItem('token')
-        console.log(token);
         let data = {}
         data.status = this.status
         data.trackingCode = this.order.trackingCode
