@@ -2,7 +2,7 @@
     <div>
         <template>
             <div class="vld-parent" style="z-index: 999999 !important;">
-                <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true :transition="fade" :opacity=0.61 />
+                <loading :active.sync="isLoading" :can-cancel="false" :is-full-page=true  :opacity=0.61 />
             </div>
         </template>
         <Sidebar />
